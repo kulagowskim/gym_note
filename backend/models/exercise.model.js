@@ -1,15 +1,22 @@
 const mongoose = require('mongoose');
-const Schema  = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const exerciseSchema = new Schema({
-  username: { type: String, required: true },
-  description: { type: String, required: true },
-  duration: { type: Number, required: true },
-  date: { type: Date, required: true },
+  name: { type: String, required: true },
+  muscleGroups: {
+    primary: { type: Array, required: false },
+    secondary: { type: Array, required: false }
+  },
+  type: { type: String, required: true },
+  videoLink: { type: String, required: true },
+  metatags: {
+    createdAt: { type : Date, default: Date.now },
+    updatedAt: { type : Date, default: Date.now }
+  }
 }, {
-  timestamps: true,
+  timestamps: false,
 });
 
-const User = mongoose.model('Exercise', exerciseSchema);
+const Exercise = mongoose.model('Exercise', exerciseSchema);
 
-module.exports = User;
+module.exports = Exercise;

@@ -1,14 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { ThemeProvider, CSSReset } from '@chakra-ui/core';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { ThemeProvider, CSSReset, Box } from '@chakra-ui/core';
 import theme from './theme';
 
-import Navbar from "./components/navbar.component";
-import ExerciseList from "./components/exercise-list.component";
-import EditExercise from "./components/edit-exercise.component";
-import CreateExercise from "./components/create-exercise.component";
-import CreateUser from "./components/create-user.component";
-
+import Navbar from "./components/Navbar";
+import Home from "./components/pages/Home";
+import EditExercise from "./components/pages/EditExercise";
+import CreateExercise from "./components/pages/CreateExercise";
+import CreateUser from "./components/pages/CreateUser";
+import Profile from "./components/pages/Profile";
+import SignUp from "./components/pages/SignUp";
+import SignIn from "./components/pages/SignIn";
+import NotFound from './components/pages/404';
 
 function App() {
   return (
@@ -17,10 +20,18 @@ function App() {
       <Router>
         <Navbar />
         <br />
-        <Route path="/" exact component={ExerciseList} />
-        <Route path="/edit/:id" exact component={EditExercise} />
-        <Route path="/create" exact component={CreateExercise} />
-        <Route path="/user" exact component={CreateUser} />
+        <Box maxWidth="1250px" m="auto">
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/edit/:id" component={EditExercise} />
+            <Route path="/create" component={CreateExercise} />
+            <Route path="/user" component={CreateUser} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/signup" component={SignUp} />
+            <Route path="/signin" component={SignIn} />
+            <Route component={NotFound} />
+          </Switch>
+        </Box>
       </Router>
     </ThemeProvider>
   );

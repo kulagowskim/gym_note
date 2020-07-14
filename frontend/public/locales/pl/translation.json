@@ -1,0 +1,17 @@
+{
+  "Register": {
+    "1":"Rejestracja",
+    "2":"Masz już konto?"
+  },
+  "Login": {
+    "1":"Logowanie",
+    "2":"Zaloguj",
+    "3":"Nie masz jeszcze konta?"
+  },
+  "Password": {
+    "1": "Hasło"
+  },
+  "Username": {
+    "1": "Nazwa użytkownika"
+  }
+}
