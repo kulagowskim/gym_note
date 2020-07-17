@@ -1,10 +1,62 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import { Flex, Input, Button, Heading } from "@chakra-ui/core";
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
+import { Flex, Input, Button, Heading, useToast } from "@chakra-ui/core";
 import { useTranslation } from 'react-i18next';
 
 function SignIn() {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+
   const { t } = useTranslation();
+  const history = useHistory();
+  const toast = useToast();
+
+  const PostData = () => {
+    //eslint-disable-next-line
+    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+      toast({
+        title: "Invalid email",
+        description: "Please enter the correct email",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      })
+      return;
+    }
+    fetch('/signin', {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        password,
+        email
+      })
+    }).then(res => res.json())
+      .then(data => {
+        console.log(data);
+
+        if (data.error) {
+          toast({
+            title: "We can`t login",
+            description: data.error,
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+          })
+        } else {
+          localStorage.setItem("jwt", data.token)
+          localStorage.setItem("user", JSON.stringify(data.user))
+          history.push('/')
+          toast({
+            title: "Signedin success",
+            status: "success",
+            duration: 4000,
+            isClosable: true,
+          })
+        }
+      })
+  }
 
   return (
     <Flex
@@ -21,7 +73,10 @@ function SignIn() {
         _focus={{
           borderColor: "primary"
         }}
-        placeholder="E-mail" />
+        placeholder="E-mail"
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
       <Input
         variant="flushed"
         mb="5px"
@@ -29,12 +84,15 @@ function SignIn() {
           borderColor: "primary"
         }}
         placeholder={t('Password.1')}
+        value={password}
+        onChange={e => setPassword(e.target.value)}
       />
       <Button
         mb="5px"
         bg="primary"
         color="white"
         _hover={{ bg: "#E5903C" }}
+        onClick={() => PostData()}
       >
         {t('Login.2')}
       </Button>

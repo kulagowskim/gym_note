@@ -21,6 +21,10 @@ const userSchema = new Schema({
   timestamps: true,
 });
 
+// userSchema.methods.getFullName = function() {
+//   return this.username
+// }
+
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

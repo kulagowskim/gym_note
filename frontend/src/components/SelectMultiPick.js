@@ -1,15 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Flex, Input, Button, Box, PseudoBox, Icon } from "@chakra-ui/core";
 
-function SelectMultiPick({ options }) {
+function SelectMultiPick({ options, parentCallback }) {
   const [selected, setSelected] = useState([]);
   const [search, setSearch] = useState("");
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
   const [searched, setSearched] = useState(options);
+  const [isEditing, setEditing] = useState(false);
 
-  const filteredBodyParts = searched.filter(option => {
+  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+  const inputRef = useRef(null);
+
+  //set focus input when click on div 
+  const toggleEditing = () => {
+    setEditing(!isEditing);
+  };
+
+  useEffect(() => {
+    if (isEditing) {
+      inputRef.current.focus();
+    }
+  }, [isEditing]);
+
+  const filteredOptions = searched.filter(option => {
     return option.toLowerCase().includes(search.toLowerCase())
   })
+
+  useEffect(() => {
+    parentCallback(selected)
+  }, [selected]
+  )
 
   function addOption(newElement) {
     if (!selected.includes(newElement)) {
@@ -88,10 +107,20 @@ function SelectMultiPick({ options }) {
 
   return (
     <>
-      <Flex border="1px solid #E2E8F0" justify="space-between" p="5px 10px" mt="10px" onClick={() => setIsComponentVisible(true)}>
+      <Flex
+        border="1px solid #E2E8F0"
+        justify="space-between"
+        p="5px 10px"
+        mt="10px"
+        onClick={() => {
+          setIsComponentVisible(true)
+          toggleEditing()
+        }}
+      >
         <Flex align="center" flexWrap="wrap">
           {selected.map(part => Item(part))}
           <Input
+            ref={inputRef}
             placeholder="Search..."
             value={search}
             height="auto"
@@ -145,7 +174,7 @@ function SelectMultiPick({ options }) {
                 Create "{search}""
             </PseudoBox>
             }
-            {filteredBodyParts.sort((a, b) => a.localeCompare(b)).map(part => OptionView(part))}
+            {filteredOptions.sort((a, b) => a.localeCompare(b)).map(part => OptionView(part))}
           </Flex>
         )}
       </Flex>

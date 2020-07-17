@@ -18,6 +18,9 @@ connection.once('open', () => {
   console.log("Mongoose database connection  established succesfully");
 });
 
+require('./models/user.model');
+require('./models/exercise.model');
+
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 

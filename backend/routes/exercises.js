@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const mongoose = require('mongoose');
+const requireLogin = require('../middleware/requireLogin');
 let Exercise = require('../models/exercise.model');
 
 router.route('/').get((req, res) => {
@@ -7,7 +9,7 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.post('/add', requireLogin, (req, res) => {
   const { name, type, videoLink, muscleGroups } = req.body
 
   if (!name || !type || !videoLink) {

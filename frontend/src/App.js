@@ -12,6 +12,7 @@ import Profile from "./components/pages/Profile";
 import SignUp from "./components/pages/SignUp";
 import SignIn from "./components/pages/SignIn";
 import NotFound from './components/pages/404';
+import Exercises from './components/pages/Exercises';
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/edit/:id" component={EditExercise} />
-            <Route path="/create" component={CreateExercise} />
+            <Route path="/createExercise" component={CreateExercise} />
+            <Route path="/exercises" component={Exercises} />
             <Route path="/user" component={CreateUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/signup" component={SignUp} />

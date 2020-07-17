@@ -55,7 +55,8 @@ const Navbar = props => {
           alignItems="center"
         >
           
-          <MenuItems><Link to="/create">Create Exercise</Link></MenuItems>
+          <MenuItems><Link to="/createExercise">Create Exercise</Link></MenuItems>
+          <MenuItems><Link to="/cexercises">Exercises</Link></MenuItems>
           <MenuItems><Link to="/user">Create User</Link></MenuItems>
           <MenuItems><Link to="/profile">Profile</Link></MenuItems>
           <MenuItems><Link to="/signup">{t('Register.1')}</Link></MenuItems>

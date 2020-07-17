@@ -8,7 +8,7 @@ require('dotenv').config();
 const { JWT_SECRET } = process.env;
 const requireLogin = require("../middleware/requireLogin")
 
-router.get('/protected',requireLogin, (req, res) => {
+router.get('/protected', requireLogin, (req, res) => {
   res.send("hello user")
 })
 
@@ -33,7 +33,7 @@ router.post('/signup', (req, res) => {
 
           user.save()
             .then(user => {
-              res.json({ message: "saved succesfully" })
+              res.json({ message: "Registrated succesfully" })
             })
             .catch(err => {
               console.log(err)
@@ -61,8 +61,9 @@ router.post('/signin', (req, res) => {
         .then(doMatch => {
           if (doMatch) {
             //res.json({ message: "succesfully signed in" })
-            const token = jwt.sign({_id: savedUser._id}, JWT_SECRET)
-            res.json({token})
+            const token = jwt.sign({ _id: savedUser._id }, JWT_SECRET)
+            const { _id, username, email } = savedUser
+            res.json({ token, user: { _id, username, email } })
           } else {
             return res.status(422).json({ error: "Invalid password" })
           }
