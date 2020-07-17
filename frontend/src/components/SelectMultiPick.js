@@ -27,7 +27,7 @@ function SelectMultiPick({ options, parentCallback }) {
 
   useEffect(() => {
     parentCallback(selected)
-  }, [selected]
+  }, [selected] // eslint-disable-line react-hooks/exhaustive-deps
   )
 
   function addOption(newElement) {

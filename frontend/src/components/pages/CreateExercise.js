@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { Flex, Input, Button, Select, Heading, useToast } from "@chakra-ui/core";
 import SelectMultiPick from "./../SelectMultiPick"
 
@@ -33,8 +32,6 @@ function CreateExercise() {
       })
     }).then(res => res.json())
       .then(data => {
-        console.log(data);
-
         if (data.error) {
           toast({
             title: "We can`t login",
@@ -68,15 +65,6 @@ function CreateExercise() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
-    const exercise = {
-      name,
-      muscleGroups,
-      type,
-      videoLink
-    }
-
-    //window.location = '/';
   }
 
   const callbackFunctionPrimary = (childData) => {
