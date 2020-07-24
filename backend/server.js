@@ -20,12 +20,15 @@ connection.once('open', () => {
 
 require('./models/user.model');
 require('./models/exercise.model');
+require('./models/muscle.model');
 
 const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
+const musclesRouter = require('./routes/muscles');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter)
+app.use('/muscles', musclesRouter)
 app.use(require('./routes/auth'))
 
 app.listen(port, () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CircularProgress, Text, Box, Flex } from "@chakra-ui/core";
 import { motion } from 'framer-motion';
-import * as ExercisesApi from './../helpers/exercises';
+import * as ExercisesApi from './../../helpers/exercises';
 
 function Exercises() {
   const [exercises, setExercises] = useState();

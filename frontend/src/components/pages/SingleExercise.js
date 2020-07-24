@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as ExercisesApi from './../helpers/exercises'
+import * as ExercisesApi from './../../helpers/exercises'
 import { useHistory } from 'react-router-dom';
 
 function SingleExercise() {
