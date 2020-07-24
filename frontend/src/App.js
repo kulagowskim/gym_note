@@ -13,6 +13,7 @@ import SignUp from "./components/pages/SignUp";
 import SignIn from "./components/pages/SignIn";
 import NotFound from './components/pages/404';
 import Exercises from './components/pages/Exercises';
+import SingleExercise from './components/pages/SingleExercise';
 
 function App() {
   return (
@@ -26,12 +27,13 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/edit/:id" component={EditExercise} />
             <Route path="/createExercise" component={CreateExercise} />
-            <Route path="/exercises" component={Exercises} />
+            <Route path="/exercises" exact component={Exercises} />
+            <Route path="/exercise/:id" exact component={SingleExercise} />
             <Route path="/user" component={CreateUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
-            <Route component={NotFound} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Box>
       </Router>
