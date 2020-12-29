@@ -7,6 +7,10 @@ const muscleSchema = new Schema({
     required: true,
     unique: true,
   },
+  nameLatin: {
+    type: String,
+    required: true
+  },
   muscleFunction: {
     type: String,
     required: true,
@@ -18,9 +22,13 @@ const muscleSchema = new Schema({
   photo: {
     type: String,
     required: false,
+  },
+  metatags: {
+    createdAt: { type : Date, default: Date.now },
+    updatedAt: { type : Date, default: Date.now }
   }
 }, {
-  timestamps: true,
+  timestamps: false,
 });
 
 const Muscle = mongoose.model('Muscle', muscleSchema);

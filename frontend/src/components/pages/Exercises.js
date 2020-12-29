@@ -25,6 +25,8 @@ function Exercises() {
         m="10px"
         overflow="hidden"
         whileHover={{ scale: 1.01 }}
+        initial={{opacity: 0}}
+        animate={{opacity: 1}}
         transition={{ ease: "easeOut", duration: 0.4 }}
         transformTemplate={(props, transform) =>
           // Disable GPU acceleration to prevent blurry text

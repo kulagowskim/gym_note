@@ -57,7 +57,6 @@ const Navbar = props => {
           
           <MenuItems><Link to="/createExercise">Create Exercise</Link></MenuItems>
           <MenuItems><Link to="/exercises">Exercises</Link></MenuItems>
-          <MenuItems><Link to="/user">Create User</Link></MenuItems>
           <MenuItems><Link to="/profile">Profile</Link></MenuItems>
           <MenuItems><Link to="/signup">{t('Register.1')}</Link></MenuItems>
           <MenuItems><Link to="/signin">{t('Login.1')}</Link></MenuItems>

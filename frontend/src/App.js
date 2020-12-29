@@ -7,7 +7,6 @@ import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
 import EditExercise from "./components/pages/EditExercise";
 import CreateExercise from "./components/pages/CreateExercise";
-import CreateUser from "./components/pages/CreateUser";
 import Profile from "./components/pages/Profile";
 import SignUp from "./components/pages/SignUp";
 import SignIn from "./components/pages/SignIn";
@@ -29,7 +28,6 @@ function App() {
             <Route path="/createExercise" component={CreateExercise} />
             <Route path="/exercises" exact component={Exercises} />
             <Route path="/exercise/:id" exact component={SingleExercise} />
-            <Route path="/user" component={CreateUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signin" component={SignIn} />
